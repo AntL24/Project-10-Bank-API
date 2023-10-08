@@ -1,4 +1,3 @@
-// pages/HomePage.js
 import Feature from '../components/Feature';
 
 function HomePage() {

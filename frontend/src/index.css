@@ -34,10 +34,8 @@ body {
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
-  /* 1 */
   -webkit-clip-path: inset(50%) !important;
   clip-path: inset(50%) !important;
-  /* 2 */
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
@@ -45,7 +43,6 @@ body {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important;
-  /* 3 */
 }
 
 .main-nav {
@@ -269,39 +266,30 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* Espacement entre les éléments du formulaire */
   max-width: 300px;
-  /* Limite la largeur du formulaire pour une meilleure lisibilité */
   margin: 20px 0;
-  /* Espacement autour du formulaire */
 }
 .edit-profile-form label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  color: #000; /* Couleur de texte noire */
+  color: #000;
 }
 
 
 .edit-profile-form input {
   padding: 5px 10px;
-  /* Espace à l'intérieur des champs de saisie */
   font-size: 1rem;
   border: 1px solid #ccc;
-  /* Bordure légère pour les champs de saisie */
   border-radius: 5px;
-  /* Coins arrondis pour les champs de saisie */
   background-color: #fff;
-  /* Fond blanc pour les champs de saisie */
   margin-top: 0.5rem;
 
 }
 
 .edit-profile-form button[type="submit"] {
   background-color: #00bc77;
-  /* Couleur d'arrière-plan verte basée sur votre design */
   color: #fff;
-  /* Texte blanc */
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -312,9 +300,7 @@ body {
 
 .edit-profile-form button[type="button"] {
   background-color: #ccc;
-  /* Couleur d'arrière-plan grise pour le bouton d'annulation */
   color: #333;
-  /* Texte sombre */
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -333,7 +319,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Make sure it sits on top */
+  z-index: 1000; 
 }
 
 .modal-content {
@@ -341,7 +327,7 @@ body {
   background-color: #fff;
   padding: 20px;
   max-width: 90%;
-  width: 400px; /* or whatever you prefer */
+  width: 400px; 
   border-radius: 8px;
 }
 
@@ -355,7 +341,6 @@ body {
   cursor: pointer;
 }
 
-/* Add grayed placeholder styles */
 input::placeholder {
   color: gray;
 }

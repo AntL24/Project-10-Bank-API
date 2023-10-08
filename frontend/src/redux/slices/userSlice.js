@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userApi } from '../../api/userApi';
 
-const TOKEN_KEY = 'token'; // Constante pour la clé de token dans localStorage
+const TOKEN_KEY = 'token';
 
 //Initial state pour la connexion et le chargement du profil utilisateur
 const initialState = {
@@ -14,9 +14,8 @@ const initialState = {
   rememberMe: false
 };
 
-//Slice user pour la gestion de l'état de connexion, le chargement du profil utilisateur et la mise à jour du profil utilisateur
-//Its purpose is to manage the state of the user's login, the loading of the user profile, and the updating of the user profile.
-//This state is then used by the components to display the appropriate UI.
+//Slice user to manage the state of the user's login, the loading of the user profile, and the updating of the user profile.
+//This state is used in multiple components to display appropriate UI.
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -27,7 +26,7 @@ const userSlice = createSlice({
       state.loginStatus = 'idle';
       state.profile = null;
     },
-    //If the token has expired, localStorageMiddleware will dispatch this action to clear the token from the state.
+    //If the token has expired, this action will be dispatched to clear the token from the state.
     tokenExpired: (state) => {
       state.token = null;
       state.loginStatus = 'idle';
@@ -54,7 +53,7 @@ const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loginStatus = 'succeeded';
-        state.token = action.payload.token; //We store the token in the state.
+        state.token = action.payload.token;
         state.rememberMe = action.payload.rememberMe; //If the user checks the Remember Me checkbox, we store the username in localStorage. Else, it is stored in sessionStorage.
      })
       .addCase(login.rejected, (state, action) => {
