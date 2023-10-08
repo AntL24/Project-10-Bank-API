@@ -253,100 +253,6 @@ body {
   margin-right: 0.5rem;
 }
 
-/* Username edition form  */
-
-.edit-profile-form button.close-modal.no-style-button {
-  background-color: inherit;  
-  padding: 0;                 
-  font-weight: inherit;       
-  cursor: pointer;            
-}
-
-.edit-profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 300px;
-  margin: 20px 0;
-}
-.edit-profile-form label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  color: #000;
-}
-
-
-.edit-profile-form input {
-  padding: 5px 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  margin-top: 0.5rem;
-
-}
-
-.edit-profile-form button[type="submit"] {
-  background-color: #00bc77;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-
-}
-
-.edit-profile-form button[type="button"] {
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; 
-}
-
-.modal-content {
-  position: relative;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 90%;
-  width: 400px; 
-  border-radius: 8px;
-}
-
-.close-modal {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-input::placeholder {
-  color: gray;
-}
-
-
-
 .account {
   display: flex;
   justify-content: space-between;
@@ -428,4 +334,113 @@ input::placeholder {
   .transaction-button {
     width: 200px;
   }
+}
+
+/*Username edition form*/
+.edit-profile-form button.close-modal.no-style-button {
+  background-color: inherit;  
+  padding: 0;                 
+  font-weight: inherit;       
+  cursor: pointer;            
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: 20px 0;
+}
+.edit-profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #000;
+}
+
+
+.edit-profile-form input {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-top: 0.5rem;
+
+}
+
+input::placeholder {
+  color: gray;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+}
+
+.edit-profile-form .name-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #000;
+  max-width: 8.2rem;
+}
+
+.edit-profile-form input {
+  flex: 1;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.edit-profile-form .button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+  border: 2px solid #bbbbbb;
+  padding: 8px 12px;
+  width: 6.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 2px;
+}
+.cancel-button:hover {
+  background-color: #aaa;
+}
+
+.save-button {
+  background-color: #00bc77;
+  color: #fff;
+  border: 2px solid #009e66;
+  padding: 8px 12px;
+  width: 6.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 2px;
+}
+.save-button:hover {
+  background-color: #009e66;
+}
+.username-display {
+  display: block;
+  margin-bottom: 1rem; 
+}
+
+.edit-button {
+  display: inline-block;
 }

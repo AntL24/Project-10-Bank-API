@@ -39,8 +39,6 @@ function UserPage() {
     setEditMode(false);
   };
 
-  const handleEditButtonClick = () => setEditMode(true);
-
   if (!token || userStatus === 'failed') {
     return <Navigate to="/" />;
   }
@@ -48,48 +46,62 @@ function UserPage() {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />{userProfile?.firstName} {userProfile?.lastName}!</h1>
-        <button className="edit-button" onClick={handleEditButtonClick}>Edit Name</button>
-        {editMode ? (
-          
-          <div className="modal-overlay" onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setEditMode(false);
-            }
-          }}>
-          
-            <form onSubmit={handleProfileUpdate} className="edit-profile-form modal-content" id="edit-profile-form">
-            <button className="close-modal no-style-button" type="button" data-dismiss="modal" onClick={() => setEditMode(false)}>&times;</button>
-              <label htmlFor="firstName">
-                First Name:
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={firstName}
-                  onChange={handleFirstNameChange}
-                  placeholder="Enter First Name"
-                />
-              </label>
-              <label htmlFor="lastName">
-                Last Name:
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={lastName}
-                  onChange={handleLastNameChange}
-                  placeholder="Enter Last Name"
-                />
-              </label>
-              <button type="submit">Save</button>
-              <button type="button" data-dismiss="modal" onClick={() => setEditMode(false)}>Cancel</button>
-            </form>
-          </div>
-        ) : (
-          null
-        )}
+        <h1>
+          Welcome back<br />
+          {editMode ? (
+            <>
+              <form onSubmit={handleProfileUpdate} className="edit-profile-form">
+                <div className="name-inputs">
+                  <label htmlFor="firstName">
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={firstName}
+                      onChange={handleFirstNameChange}
+                      placeholder={userProfile?.firstName || "First Name"}
+                    />
+                  </label>
+                  <label htmlFor="lastName">
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={lastName}
+                      onChange={handleLastNameChange}
+                      placeholder={userProfile?.lastName || "Last Name"}
+                    />
+                  </label>
+                </div>
+
+                <div className="button-group">
+                  <button type="submit" className="save-button">Save</button>
+                  <button type="button" onClick={() => {
+                    setFirstName(userProfile?.firstName || '');
+                    setLastName(userProfile?.lastName || '');
+                    setEditMode(false);
+                  }}
+                    className="cancel-button"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </>
+          ) : (
+           
+              <>
+                <span className="username-display">
+                  {userProfile?.firstName} {userProfile?.lastName}
+                </span>
+                <button className="edit-button" onClick={() => setEditMode(true)}>Edit Name</button>
+              </>
+            )}
+          </h1>
+
+        
       </div>
+
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">
