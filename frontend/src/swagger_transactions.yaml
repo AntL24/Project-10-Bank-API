@@ -1,0 +1,220 @@
+swagger: "2.0"
+info:
+  title: Argent Bank Transactions API
+  version: "1.0.0"
+
+paths:
+  /users/{userId}/accounts:
+    get:
+      summary: Retrieve all bank accounts for a user.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: User's ID.
+          type: integer
+        - in: header
+          name: Authorization
+          required: true
+          description: JWT for authentication.
+          type: string
+          default: Bearer [token]
+      responses:
+        200:
+          description: List of accounts retrieved successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
+        404:
+          description: User not found.
+        401:
+          description: Unauthorized access.
+
+  /users/{userId}/accounts/{accountId}/transactions:
+    get:
+      summary: Retrieve all transactions for a given account for the current month.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: User's ID.
+          type: integer
+        - in: path
+          name: accountId
+          required: true
+          description: Account ID.
+          type: integer
+        - in: header
+          name: Authorization
+          required: true
+          description: JWT for authentication.
+          type: string
+          default: Bearer [token]
+      responses:
+        200:
+          description: List of transactions retrieved successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        404:
+          description: Account or transactions not found.
+        401:
+          description: Unauthorized access.
+
+  /users/{userId}/accounts/{accountId}/transactions/{transactionId}:
+    get:
+      summary: Retrieve details of a specific transaction.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: User's ID.
+          type: integer
+        - in: path
+          name: accountId
+          required: true
+          description: Account ID.
+          type: integer
+        - in: path
+          name: transactionId
+          required: true
+          description: Transaction ID.
+          type: integer
+        - in: header
+          name: Authorization
+          required: true
+          description: JWT for authentication.
+          type: string
+          default: Bearer [token]
+      responses:
+        200:
+          description: Transaction details retrieved successfully.
+          schema:
+            $ref: '#/definitions/Transaction'
+        404:
+          description: Transaction not found.
+        401:
+          description: Unauthorized access.
+
+    
+  /users/{userId}/accounts/{accountId}/transactions/{transactionId}/annotation:
+    patch:
+      summary: Modify the annotation of an existing transaction.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: User's ID.
+          type: integer
+        - in: path
+          name: accountId
+          required: true
+          description: Account ID.
+          type: integer
+        - in: path
+          name: transactionId
+          required: true
+          description: Transaction ID.
+          type: integer
+        - in: header
+          name: Authorization
+          required: true
+          description: JWT for authentication.
+          type: string
+          default: Bearer [token]
+        - in: body
+          name: annotation
+          required: true
+          description: New annotation for the transaction.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Annotation successfully modified.
+        400:
+          description: Missing or incorrect annotation.
+        404:
+          description: Transaction not found.
+        401:
+          description: Unauthorized access.
+
+  /users/{userId}/accounts/{accountId}/transactions/{transactionId}/category:
+    patch:
+      summary: Modify the category of an existing transaction.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: User's ID.
+          type: integer
+        - in: path
+          name: accountId
+          required: true
+          description: Account ID.
+          type: integer
+        - in: path
+          name: transactionId
+          required: true
+          description: Transaction ID.
+          type: integer
+        - in: header
+          name: Authorization
+          required: true
+          description: JWT for authentication.
+          type: string
+          default: Bearer [token]
+        - in: body
+          name: category
+          required: true
+          description: New category for the transaction.
+          schema:
+            type: string
+            enum: [food, entertainment, bills, travel, other]
+      responses:
+        200:
+          description: Category successfully modified.
+        400:
+          description: Missing or incorrect category.
+        404:
+          description: Transaction not found.
+        401:
+          description: Unauthorized access.
+
+definitions:
+  Account:
+    type: object
+    properties:
+      accountId:
+        type: integer
+      title:
+        type: string
+      balance:
+        type: number
+      description:
+        type: string
+      type:
+        type: string
+        enum:
+          - checking
+          - savings
+          - creditcard
+
+  Transaction:
+    type: object
+    properties:
+      transactionId:
+        type: integer
+      date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      amount:
+        type: number
+      category:
+        type: string
+        enum: [food, entertainment, bills, travel, other]
+      annotation:
+        type: string
