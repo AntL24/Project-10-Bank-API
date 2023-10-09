@@ -11,10 +11,6 @@ export const userApi = {
     return response.data.body.token;
   },
 
-  signup: (credentials) => {
-    return axios.post(`${baseUrl}/user/signup`, credentials);
-  },
-
   getProfile: async (token) => {
     let response = await axios.post(`${baseUrl}/user/profile`, {}, {//empty object is required to send the token. Without it, the token is not sent because axios.post() expects a second argument.
       headers: {
