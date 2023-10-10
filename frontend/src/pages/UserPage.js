@@ -13,6 +13,7 @@ function UserPage() {
   const [firstName, setFirstName] = useState(userProfile?.firstName || '');
   const [lastName, setLastName] = useState(userProfile?.lastName || '');
 
+  //If the user is logged in and the userProfile is not loaded, we load the userProfile.
   useEffect(() => {
     if (token && !userProfile) {
       dispatch(loadUserProfile(token));
@@ -33,12 +34,20 @@ function UserPage() {
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
+  //Dispatch to update the user profile when the form is submitted
   const handleProfileUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateUserProfile({ firstName, lastName }));
+  
+    //If the user has not entered a first name or a last name, we keep the current value
+    const updatedFirstName = firstName !== '' ? firstName : userProfile?.firstName;
+    const updatedLastName = lastName !== '' ? lastName : userProfile?.lastName;
+  
+    dispatch(updateUserProfile({ firstName: updatedFirstName, lastName: updatedLastName }));
     setEditMode(false);
   };
+  
 
+  //No token, or userStatus === 'failed' => redirect to home page
   if (!token || userStatus === 'failed') {
     return <Navigate to="/" />;
   }

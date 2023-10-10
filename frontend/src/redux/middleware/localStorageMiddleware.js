@@ -4,6 +4,7 @@ const localStorageMiddleware = (store) => (next) => (action) => {
   let result = next(action);
   const rememberMe = store.getState().user.rememberMe;
 
+  //Manage the token according to the user's actions
   if (action.type === 'user/login/fulfilled') {
     const token = store.getState().user.token;
     const expiresIn = 24 * 60 * 60 * 1000; 

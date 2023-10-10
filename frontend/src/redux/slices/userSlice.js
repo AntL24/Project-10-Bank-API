@@ -3,7 +3,6 @@ import { userApi } from '../../api/userApi';
 
 const TOKEN_KEY = 'token';
 
-//Initial state pour la connexion et le chargement du profil utilisateur
 const initialState = {
   token: localStorage.getItem(TOKEN_KEY) || null || sessionStorage.getItem(TOKEN_KEY), //If the user has a token in localStorage, we use that. Else, we check sessionStorage.
   loginStatus: 'idle',
@@ -36,7 +35,7 @@ const userSlice = createSlice({
   //Here we handle the results of the async thunks.
   extraReducers: (builder) => {
     builder
-      //Les cas pour la mise à jour du profil utilisateur
+      //Update profile cases
       .addCase(updateUserProfile.pending, (state) => {
         state.profileStatus = 'loading';
       })
@@ -48,7 +47,7 @@ const userSlice = createSlice({
         state.profileStatus = 'failed';
         state.profileError = action.error.message;
       })
-      //Les cas pour la connexion
+      //Login cases
       .addCase(login.pending, (state) => {
         state.loginStatus = 'loading';
       })
@@ -61,7 +60,7 @@ const userSlice = createSlice({
         state.loginStatus = 'failed';
         state.loginError = action.payload.message;
       })
-      //Les cas pour le chargement du profil utilisateur
+      //Load profile cases
       .addCase(loadUserProfile.pending, (state) => {
         state.profileStatus = 'loading';
       })

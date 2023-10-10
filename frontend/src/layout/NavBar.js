@@ -17,6 +17,7 @@ function NavBar() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
+        {/* Display the LogoutButton component if the user is logged in, else display the Sign In button */}
         {token ? (
           <LogoutButton />
         ) : (
