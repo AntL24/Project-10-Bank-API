@@ -34,18 +34,28 @@ function UserPage() {
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
+  const nameRegex = /^[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s'-]+$/;
+
   //Dispatch to update the user profile when the form is submitted
   const handleProfileUpdate = (e) => {
     e.preventDefault();
-  
-    //If the user has not entered a first name or a last name, we keep the current value
+
+    //If user has not changed the name, we send the current name
     const updatedFirstName = firstName !== '' ? firstName : userProfile?.firstName;
     const updatedLastName = lastName !== '' ? lastName : userProfile?.lastName;
-  
+    
+    //regex check
+    if (!nameRegex.test(updatedFirstName) || !nameRegex.test(updatedLastName)) {
+      alert("Le prénom ou le nom contient des caractères invalides.");
+      return;
+    }
+
+
     dispatch(updateUserProfile({ firstName: updatedFirstName, lastName: updatedLastName }));
     setEditMode(false);
   };
-  
+
+
 
   //No token, or userStatus === 'failed' => redirect to home page
   if (!token || userStatus === 'failed') {
@@ -98,17 +108,17 @@ function UserPage() {
               </form>
             </>
           ) : (
-           
-              <>
-                <span className="username-display">
-                  {userProfile?.firstName} {userProfile?.lastName}
-                </span>
-                <button className="edit-button" onClick={() => setEditMode(true)}>Edit Name</button>
-              </>
-            )}
-          </h1>
 
-        
+            <>
+              <span className="username-display">
+                {userProfile?.firstName} {userProfile?.lastName}
+              </span>
+              <button className="edit-button" onClick={() => setEditMode(true)}>Edit Name</button>
+            </>
+          )}
+        </h1>
+
+
       </div>
 
       <h2 className="sr-only">Accounts</h2>
