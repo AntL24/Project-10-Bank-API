@@ -27,7 +27,7 @@ const localStorageMiddleware = (store) => (next) => (action) => {
     store.dispatch({ type: 'user/tokenExpired' });
   }
 
-  return result;
+  return result;//Go to the next middleware or reducer.
 };
 
 export default localStorageMiddleware;

@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:3001/api/v1';
 
 //The userApi object contains several methods.
-//Those are used by the userSlice to make requests to the backend according to the user's actions and to each
+//Those are used in userSlice to make requests to the backend according to the user's actions
 export const userApi = {
 
   login: async (credentials) => {
