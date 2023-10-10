@@ -33,6 +33,7 @@ const userSlice = createSlice({
       state.profile = null;
     },
   },
+  //Here we handle the results of the async thunks.
   extraReducers: (builder) => {
     builder
       //Les cas pour la mise à jour du profil utilisateur
@@ -74,6 +75,8 @@ const userSlice = createSlice({
       });
   },
 });
+
+//Async Thunks to manage the user's login, the loading of the user profile, and the updating of the user profile.
 
 //Returns the user token from the API, and the rememberMe value from the form
 export const login = createAsyncThunk('user/login', async ({ credentials, rememberMe }, { rejectWithValue }) => {

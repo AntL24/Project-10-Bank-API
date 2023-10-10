@@ -14,6 +14,7 @@ function SignInPage() {
 
   const navigate = useNavigate();
 
+  //If the user has checked the Remember Me checkbox, we retrieve the username from localStorage and set it in the state.
   useEffect(() => {
     if (localStorage.getItem('rememberMe')) {
       setUsername(localStorage.getItem('rememberMe'));
@@ -21,6 +22,7 @@ function SignInPage() {
     }
   }, []);
   
+  //Dispatch the login action when the user submits the form.
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(login({ credentials: { email: username, password }, rememberMe }));
@@ -32,6 +34,7 @@ function SignInPage() {
     }
   };
 
+  //If the login was successful, we redirect the user to the user page.
   useEffect(() => {
     let userToken = localStorage.token ? localStorage.token : sessionStorage.token;
     if (userToken) {
